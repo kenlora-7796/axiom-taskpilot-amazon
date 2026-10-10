@@ -225,7 +225,7 @@ export default function Home() {
                     <p className="mb-2 text-xs font-semibold text-emerald-400">
                       TaskPilot
                     </p>
-                    <p>I prepared a workflow for your request:</p>
+                    <p>I prepared a proposed workflow for your request. Please review the steps and approve the plan below before running a simulation.</p>
                     <ol className="mt-2 list-inside list-decimal space-y-1 text-slate-300">
                       {task.steps.map((step, index) => (
                         <li key={index}>{step}</li>
@@ -239,6 +239,27 @@ export default function Home() {
                 </div>
               ))
             )}
+          </div>
+          <div className="mt-5">
+            <p className="mb-3 text-sm font-semibold text-cyan-300">
+              Try a demo request
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Help me organize tomorrow: review emails, prepare for a meeting, and work on my business.",
+                "Help me prepare a professional follow-up email after a client meeting.",
+                "Plan the next steps for launching my small business project."
+              ].map((example) => (
+                <button
+                  key={example}
+                  type="button"
+                  onClick={() => setRequest(example)}
+                  className="rounded-lg border border-cyan-800 bg-slate-950 px-4 py-3 text-left text-sm text-cyan-200 hover:bg-slate-800"
+                >
+                  {example}
+                </button>
+              ))}
+            </div>
           </div>
           <textarea
             value={request}
@@ -321,7 +342,7 @@ export default function Home() {
                       {task.simulation && (
                         <div className="rounded-xl border border-cyan-800 bg-slate-950 p-4">
                           <p className="font-semibold text-cyan-300">
-                            Simulation Complete
+                            Simulation Complete - No External Actions
                           </p>
 
                           <p className="mt-1 text-xs text-slate-400">
